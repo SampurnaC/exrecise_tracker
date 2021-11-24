@@ -1,0 +1,10 @@
+{
+  "exercises": [
+    {
+      "title": "Running",
+      "details": "running is a great exercise to do daily",
+      "complete": false,
+      "id": 10
+    }
+  ]
+}
