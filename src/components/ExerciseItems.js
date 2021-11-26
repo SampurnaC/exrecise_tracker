@@ -1,4 +1,5 @@
 const ExerciseItem = ({exercise, performDelete, performToggle}) => {
+  const completed = exercise.complete
   const handleDelete=()=>{
     fetch(`http://localhost:3001/exercises/${exercise.id}`,{
       method: 'DELETE',
@@ -7,19 +8,18 @@ const ExerciseItem = ({exercise, performDelete, performToggle}) => {
       performDelete(exercise.id)
     })
     .catch((error)=>console.log(error));
-  }
+  };
 
   const handleToggle=()=>{
     fetch(`http://localhost:3001/exercises/${exercise.id}`,{
       method: 'PATCH',
       headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({complete: !exercise.complete})   
+      body: JSON.stringify({complete: !exercise.complete})
     })
     .then(()=> {
-    performToggle(exercise.id)
+      performToggle(exercise.id);
     })
     .catch((error)=>console.log(error));
-    console.log(exercise.complete)
   }
 
   return (
@@ -30,7 +30,7 @@ const ExerciseItem = ({exercise, performDelete, performToggle}) => {
       </div>
       <div>
         <button onClick={handleDelete}>Delete Exercise </button>
-        <button onClick={handleToggle}>Toggle</button>
+        <button onClick={handleToggle}>{completed? "Completed" : "Pending"}</button>
       </div>
     </div>
   );

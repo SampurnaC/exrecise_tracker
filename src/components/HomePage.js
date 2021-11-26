@@ -8,7 +8,7 @@ const HomePage = () => {
     fetch(`http://localhost:3001/exercises`)
     .then(response => response.json())
     .then(json => setExercises(json))
-  });
+  },[]);
 
   const performDelete=(id)=>{
     const newExercise = exercises.filter(exercise=> exercise.id !== id)
@@ -18,14 +18,14 @@ const HomePage = () => {
 
   const performToggle=(id)=>{
     // First, make a copy of the existing exercises
-    const newExercises = [...exercises]
+    const clonedExercises = [...exercises];
     // Then find the index of the exercise you want to modify
-    const index = newExercises.findIndex(exercise => exercise.id === id)
+    const clickedExerciseIndex = clonedExercises.findIndex(exercise => exercise.id ===id)
+    const clickedExercise = clonedExercises[clickedExerciseIndex]
     // Now you can replace the exercise with a modified copy of the found exercise
-    const foundItem = exercises[index]
-    exercises[index] = {...foundItem, complete: !foundItem.complete}
+    clickedExercise.complete = !clickedExercise.complete
     // Finally, set the exercises to the modified copy of the original array
-    setExercises(exercises);
+    setExercises(clonedExercises);
   }
 
   return (
