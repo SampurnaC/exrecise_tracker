@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useHistory } from "react-router";
 
 const Create = () => {
   const [title, setTitle] = useState('');
   const [details, setDetails] = useState('');
+  const history = useHistory();
 
   const createExercise=(e)=>{
     e.preventDefault();
@@ -15,6 +17,7 @@ const Create = () => {
       body: JSON.stringify(exercise)
     })
     .then(()=>{
+      history.push('/');
       console.log("new exercise added");
       console.log(exercise)
     })
