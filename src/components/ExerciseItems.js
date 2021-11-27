@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ExerciseItem = ({exercise, performDelete, performToggle}) => {
   const completed = exercise.complete
   const handleDelete=()=>{
@@ -25,7 +27,10 @@ const ExerciseItem = ({exercise, performDelete, performToggle}) => {
   return (
     <div>
       <div>
+        <Link to={`/exercises/${exercise.id}/edit`}>
           <h3>{exercise.title}</h3>
+          </Link>
+
           <h3>{exercise.details}</h3>
       </div>
       <div>
